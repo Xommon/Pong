@@ -38,11 +38,18 @@ public class Paddle : MonoBehaviour
 
     	//Update the paddle's position
     	transform.position = pos;
+
+    	transform.name = input;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        //Move the paddle
+
+        //GetAxis is a number between 1 and -1
+        float move = Input.GetAxis(input) * Time.deltaTime * speed;
+
+        transform.Translate (move * Vector2.up);
     }
 }
