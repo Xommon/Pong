@@ -34,7 +34,6 @@ public class Ball : MonoBehaviour
         //Game Over
         if (transform.position.x < GameManager.bottomLeft.x + radius && direction.x < 0) {
         	//Right player scores
-            GameManager.count ++;
 
         	//For now, just freeze time
         	Time.timeScale = 0;
@@ -42,7 +41,6 @@ public class Ball : MonoBehaviour
         }
         if (transform.position.x > GameManager.topRight.x - radius && direction.x > 0) {
         	//Left player scores
-            GameManager.count2 ++;
 
         	//For now, just freeze time
         	Time.timeScale = 0;
