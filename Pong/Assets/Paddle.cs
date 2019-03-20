@@ -5,17 +5,19 @@ using UnityEngine;
 public class Paddle : MonoBehaviour
 {
 	//Variables for paddle
+	[SerializeField]
 	float speed;
+
 	float height;
 
 	string input;
-	bool isRight;
+	public bool isRight;
 
     // Start is called before the first frame update
     void Start()
     {
+        speed = 6f;
         height = transform.localScale.y;
-        speed = 5f;
     }
 
     public void Init(bool isRightPaddle) {
@@ -49,6 +51,14 @@ public class Paddle : MonoBehaviour
 
         //GetAxis is a number between 1 and -1
         float move = Input.GetAxis(input) * Time.deltaTime * speed;
+
+        //Restrict paddle movement
+        if (transform.position.y < GameManager.bottomLeft.y + height / 2 && move < 0) {
+        	move = 0;
+        }
+        if (transform.position.y > GameManager.topRight.y - height / 2 && move > 0) {
+        	move = 0;
+        }
 
         transform.Translate (move * Vector2.up);
     }
